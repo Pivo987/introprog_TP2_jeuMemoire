@@ -181,13 +181,13 @@ class ViewController: UIViewController {
             nombreVerification = 0
             Timer.scheduledTimer(timeInterval: 2,
                                  target: self,
-                                 selector: (#selector(showResetButton)),
+                                 selector: (#selector(showResetButtonCongratulations)),
                                  userInfo: nil,
                                  repeats: false)
         }
     }
     //------------------
-    func showResetButton() {
+    func showResetButtonCongratulations() {
         resetButton.isHidden = false
         congratulations.isHidden = false
     }
