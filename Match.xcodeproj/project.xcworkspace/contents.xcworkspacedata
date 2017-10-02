@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Match.xcodeproj">
+      location = "self:/Volumes/USB_COURS/Cours_Grasset/automne_2017/intro_prog(Mario)/TP2/Swift/Match/Match.xcodeproj">
    </FileRef>
 </Workspace>
