@@ -3,8 +3,8 @@ import UIKit
 //======================================================
 class ViewController: UIViewController {
     //------------------
-    //------------------
     
+    //Vues de face et arrière
     @IBOutlet weak var back_01: UIView!
     @IBOutlet weak var front_01: UIView!
     @IBOutlet weak var back_02: UIView!
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var back_08: UIView!
     @IBOutlet weak var front_08: UIView!
     
-    
+    //Images des animaux se trouvant dans chaque arrière
     @IBOutlet weak var imgView01: UIImageView!
     @IBOutlet weak var imgView02: UIImageView!
     @IBOutlet weak var imgView03: UIImageView!
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imgView07: UIImageView!
     @IBOutlet weak var imgView08: UIImageView!
     
-
+    //Cartes contenant faces et arrières
     @IBOutlet weak var card_01: UIView!
     @IBOutlet weak var card_02: UIView!
     @IBOutlet weak var card_03: UIView!
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var card_07: UIView!
     @IBOutlet weak var card_08: UIView!
     
+    //variables pour la fonction incrementationNombreVerification(), showResetButtonCongratulations() et reset()
     var nombreVerification = 0
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var congratulations: UIImageView!
@@ -66,7 +67,9 @@ class ViewController: UIViewController {
         randomAnimalNames()
         setImagesToCard()
     }
+    
     //------------------
+    //affichage des cartes
     @IBAction func showCard(_sender: UIButton) {
         
         if arrayOfHidingFronts.count == 2 {
@@ -127,7 +130,9 @@ class ViewController: UIViewController {
         }
         verification()
     }
+    
     //------------------
+    //Retourne les cartes lorsque l'on clique dessus
     func flipCard(from: UIView, to: UIView) {
         
         let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromBottom, .showHideTransitionViews]
@@ -140,7 +145,9 @@ class ViewController: UIViewController {
             to.isHidden = false
         })
     }
+    
     //------------------
+    //Assigne les images aux cartes
     func setImagesToCard() {
         var number = 0
         for imgView in arrayOfImageViews {
@@ -148,7 +155,9 @@ class ViewController: UIViewController {
             number = number + 1
         }
     }
+    
     //------------------
+    //Place les images des animaux de manière aléatoire
     func randomAnimalNames() {
         let numberOfAnimals = arrayOfAnimalNames.count
         
@@ -158,7 +167,9 @@ class ViewController: UIViewController {
             arrayOfAnimalNames.remove(at: randomNumber)
         }
     }
+    
     //------------------
+    //Vérifie si les deux cartes sélectionnées ont une image (animal) semblable
     func verification() {
         if arrayOfChosenCards.count == 2 {
             if arrayOfChosenCards[0] == arrayOfChosenCards[1] {
@@ -175,7 +186,9 @@ class ViewController: UIViewController {
         }
         resetCards()
     }
+    
     //------------------
+    /*Incremente le nombre de vérifications de 1 si la fonction verification est vraie et appelle showResetButtonCongratulations()*/
     func incrementationNombreVerification() {
         nombreVerification += 1
         if nombreVerification == 4 {
@@ -187,12 +200,16 @@ class ViewController: UIViewController {
                                  repeats: false)
         }
     }
+    
     //------------------
+    //Affiche le bouton reset et l'image congratulations
     func showResetButtonCongratulations() {
         resetButton.isHidden = false
         congratulations.isHidden = false
     }
+    
     //------------------
+    //Si les deux cartes sont pareilles, appelle la fonction reflip dans 2 secondes
     func resetCards() {
         if arrayOfShowingBacks.count == 2 {
         Timer.scheduledTimer(timeInterval: 2,
@@ -202,7 +219,9 @@ class ViewController: UIViewController {
                              repeats: false)
         }
     }
+    
     //------------------
+    //Retourne les cartes face cachée (forêt)
     @objc func reflip() {
         for index in 0..<arrayOfShowingBacks.count {
             flipCard(from: arrayOfShowingBacks[index], to: arrayOfHidingFronts[index])
@@ -211,12 +230,14 @@ class ViewController: UIViewController {
         arrayOfShowingBacks = []
     }
     //------------------
+    //Cache les vues choisies et vide le tableau arrayOfChosenViews
     @objc func hidecards () {
         arrayOfChosenViews[0].isHidden = true
         arrayOfChosenViews[1].isHidden = true
         arrayOfChosenViews = []
     }
     //------------------
+    //Remet le jeu avec toutes les cartes faces cachées, prêt à rejouer
     @IBAction func reset(_ sender: UIButton) {
         resetButton.isHidden = true
         congratulations.isHidden =  true
@@ -229,6 +250,5 @@ class ViewController: UIViewController {
         setImagesToCard()
     }
     //------------------
-    
 }
 
